@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+body {
+	background-color: #BDB76B;
+}
+
 .row {
 }
 
@@ -9,4 +13,12 @@
 	border: 1px solid red;
 	display: inline-block;
 	margin: 0;
+}
+
+.floor {
+	background-color: #666;
+}
+
+.wall {
+	background-color: #fff;
 }

@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  <h1>Meteor Multiplay</h1>
+  <h1>Create map</h1>
   {{> map}}
 </body>
 
@@ -11,8 +11,8 @@
 	<div>
 		{{#each rows}} 
 			<div class="row">
-				{{#each .}}
-					<div class="tile {{.}}">
+				{{#each row}}
+					<div class="tile {{tile}}" data-x="{{index}}"  data-y="{{../index}}">
 						
 					</div>
 				{{/each}}
