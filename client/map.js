@@ -37,3 +37,35 @@ Template.map.events({
 		});
 	}
 });
+
+Template.map.rendered =
+  function(){
+    $(window).on( 'keydown', function(e){
+      var moveYX = [0,0];
+      if (e.which == 38)
+        moveYX[0] = -1;
+      if (e.which == 40)
+        moveYX[0] = 1;
+      if (e.which == 37)
+        moveYX[1] = -1;
+      if (e.which == 39)
+        moveYX[1] = 1;
+
+      if (moveYX[0] == 0 && moveYX[1] == 0)
+        return;
+
+//      var playerId = '';
+//      var player = map.findOne(playerId);
+//      var newPos = player.profile.position;
+//      newPos.y += moveYX[0];
+//      newPos.x += moveYX[1];
+//      Map.update(playerId, {
+//        $set : {
+//          profile : {
+//            position : newPos
+//          }
+//        }
+//      })
+
+    } );
+  };
