@@ -8,5 +8,15 @@
 </body>
 
 <template name="map">
-
+	<div>
+		{{#each rows}} 
+			<div class="row">
+				{{#each .}}
+					<div class="tile {{.}}">
+						
+					</div>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
 </template>
