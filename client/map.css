@@ -10,9 +10,16 @@ body {
 .tile {
 	width: 50px;
 	height: 50px;
-	border: 1px solid red;
 	display: inline-block;
 	margin: 0;
+}
+
+.tile.floor:hover {
+	background-color:  rgba(0,0,0,0.5);
+}
+
+.tile.wall:hover {
+	background-color:  rgba(112,112,112,0.5);
 }
 
 .floor {
