@@ -16,9 +16,9 @@ body {
 }
 
 .floor {
-	background-color: #666;
+	background-color: #777;
 }
 
 .wall {
-	background-color: #fff;
+	background-color: #000;
 }

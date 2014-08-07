@@ -1,6 +1,6 @@
 Template.map.helpers({
 	rows : function() {
-		var map = Map.findOne('GsPYMGi5kpxAPZTpg');
+		var map = Map.findOne('42');
 		if (!map) return [];
 		return map.rows.map( function(row, index) {
 			return {
@@ -19,7 +19,7 @@ Template.map.events({
 		var x = e.currentTarget.getAttribute('data-x');
 
 		console.log('click', x, y);
-		var map = Map.findOne('GsPYMGi5kpxAPZTpg');
+		var map = Map.findOne('42');
 
 		var oldValue = map.rows[y][x];
 
@@ -30,7 +30,7 @@ Template.map.events({
 
 		map.rows[y][x]  = newValue;
 
-		Map.update('GsPYMGi5kpxAPZTpg', {
+		Map.update('42', {
 			$set : {
 				rows : map.rows
 			}
