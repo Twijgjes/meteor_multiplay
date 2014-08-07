@@ -18,15 +18,15 @@ Template.map.events({
 		var y = e.currentTarget.getAttribute('data-y');
 		var x = e.currentTarget.getAttribute('data-x');
 
-		console.log('click', x, y);
+		// console.log('click', x, y);
 		var map = Map.findOne('42');
 
 		var oldValue = map.rows[y][x];
 
-		if (oldValue == 'floor')
-			var newValue = 'wall';
-		else
+		if (oldValue == 'wall')
 			var newValue = 'floor';
+		else
+			var newValue = 'wall';
 
 		map.rows[y][x]  = newValue;
 
