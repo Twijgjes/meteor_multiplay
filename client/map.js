@@ -1,7 +1,7 @@
 Template.map.helpers({
 	rows : function() {
 		var map = Map.findOne('42');
-		if (!map) return [];
+		if (!map) return []; // data not available on client yet
 		return map.rows.map( function(row, index) {
 			return {
 				row: row.map(function(tile, index) {
@@ -10,6 +10,15 @@ Template.map.helpers({
 				index: index
 			};
 		});
+	},
+
+	playerIsHere : function(x,y) {
+		var user = Meteor.user();
+		if (!user || !user.profile.position) return; // not logged in, or data not available on client yet
+		
+		// console.log('playerIsHere' ,x ,y);
+		return x == user.profile.position[1] &&
+			y == user.profile.position[0];
 	}
 });
 
@@ -41,7 +50,7 @@ Template.map.events({
 Template.map.rendered =
   function(){
     $(window).on( 'keydown', function(e){
-      var moveYX = [0,0];
+     e.preventDefault();
       if (e.which == 38)
         moveYX[0] = -1;
       if (e.which == 40)
@@ -50,22 +59,17 @@ Template.map.rendered =
         moveYX[1] = -1;
       if (e.which == 39)
         moveYX[1] = 1;
-
-      if (moveYX[0] == 0 && moveYX[1] == 0)
-        return;
-
-//      var playerId = '';
-//      var player = map.findOne(playerId);
-//      var newPos = player.profile.position;
-//      newPos.y += moveYX[0];
-//      newPos.x += moveYX[1];
-//      Map.update(playerId, {
-//        $set : {
-//          profile : {
-//            position : newPos
-//          }
-//        }
-//      })
-
     } );
+
+    $(window).on( 'keyup', function(e){
+    e.preventDefault();
+      if (e.which == 38)
+        moveYX[0] = 0;
+      if (e.which == 40)
+        moveYX[0] = 0;
+      if (e.which == 37)
+        moveYX[1] = 0;
+      if (e.which == 39)
+        moveYX[1] = 0;
+	});
   };

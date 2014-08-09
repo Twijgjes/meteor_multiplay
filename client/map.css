@@ -29,3 +29,7 @@ body {
 .wall {
 	background-color: #000;
 }
+
+.tile.player {
+	background-color: red;
+}

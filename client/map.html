@@ -13,8 +13,8 @@
 		{{#each rows}} 
 			<div class="row">
 				{{#each row}}
-					<div class="tile {{tile}}" data-x="{{index}}"  data-y="{{../index}}">
-						
+					<div class="tile {{tile}}
+					{{#if playerIsHere index ../index}}player{{/if}}" data-x="{{index}}"  data-y="{{../index}}">
 					</div>
 				{{/each}}
 			</div>
