@@ -17,8 +17,8 @@ Template.map.helpers({
 		if (!user || !user.profile.position) return; // not logged in, or data not available on client yet
 		
 		// console.log('playerIsHere' ,x ,y);
-		return x == user.profile.position[1] &&
-			y == user.profile.position[0];
+		return x == user.profile.position.x &&
+			y == user.profile.position.y;
 	}
 });
 
@@ -44,6 +44,14 @@ Template.map.events({
 				rows : map.rows
 			}
 		});
+	},
+
+	'click [data-action=reset]' : function() {
+		Meteor.users.update(Meteor.user()._id, {
+		$set: {
+			'profile.position' : { x:0 , y:0 }
+		}
+	});
 	}
 });
 
@@ -52,24 +60,24 @@ Template.map.rendered =
     $(window).on( 'keydown', function(e){
      e.preventDefault();
       if (e.which == 38)
-        moveYX[0] = -1;
+        move.y = -1;
       if (e.which == 40)
-        moveYX[0] = 1;
+        move.y = 1;
       if (e.which == 37)
-        moveYX[1] = -1;
+        move.x = -1;
       if (e.which == 39)
-        moveYX[1] = 1;
+        move.x = 1;
     } );
 
     $(window).on( 'keyup', function(e){
     e.preventDefault();
       if (e.which == 38)
-        moveYX[0] = 0;
+        move.y = 0;
       if (e.which == 40)
-        moveYX[0] = 0;
+        move.y = 0;
       if (e.which == 37)
-        moveYX[1] = 0;
+        move.x = 0;
       if (e.which == 39)
-        moveYX[1] = 0;
+        move.x = 0;
 	});
   };
