@@ -1,6 +1,8 @@
 Meteor.startup(function() {
 	console.log('*** starting Meteor Multiplay client ***');
 
+
+
 	clientUpdateLoop(); // kick-off update loop on the client
 })
 
@@ -27,10 +29,7 @@ function updatePlayer() {
 	else {
 		
 		var map = Map.findOne('42');
-
 		if (!map) return;
-
-		
 
 		var resultMove = { x: move.x, y: move.y };
 		if (map.rows[pos.y][pos.x + move.x] == 'wall')

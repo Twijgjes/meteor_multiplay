@@ -2,9 +2,26 @@
 
 body {
 	background-color: #BDB76B;
+	margin:0;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.row {
+.bar {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	color : white;
+	background-color: rgba(0,0,0,0.5);
+	padding: 10px;
+}
+
+h1 {
+	margin:0;
+	font-weight: normal;
+}
+
+.map {
+	text-align: center;
 }
 
 .tile {
@@ -31,5 +48,5 @@ body {
 }
 
 .tile.player {
-	background-color: red;
+	background-color: lime;
 }

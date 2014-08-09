@@ -48,10 +48,26 @@ Template.map.events({
 
 	'click [data-action=reset]' : function() {
 		Meteor.users.update(Meteor.user()._id, {
-		$set: {
-			'profile.position' : { x:0 , y:0 }
-		}
-	});
+			$set: {
+				'profile.position' : { x:1 , y:1 }
+			}
+		});
+	},
+
+	'click [data-action=clear]' : function() {
+		var map = Map.findOne('42');
+
+		var rows = map.rows.map(function(row, y) {
+			return row.map(function(tile, x) {
+				if (x == 0 || y == 0 || x == 15 || y == 15)
+					return 'wall';
+				return 'floor';
+			});
+		});
+
+		Map.update('42', {
+			$set : { rows : rows }
+		});
 	}
 });
 

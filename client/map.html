@@ -3,14 +3,21 @@
 </head>
 
 <body>
-	{{> loginButtons }}
 
-  <h1>Create map</h1>
+  
   {{> map}}
 </body>
 
 <template name="map">
-  <div>
+	<div class="bar">
+		<div>
+			<button data-action="reset">reset player</button>
+			<button data-action="clear">clear map</button>
+		</div>
+		<h1>Create map</h1>
+		{{> loginButtons }}
+	</div>
+  	<div class="map">
 		{{#each rows}} 
 			<div class="row">
 				{{#each row}}
@@ -21,5 +28,4 @@
 			</div>
 		{{/each}}
 	</div>
-	<button data-action="reset">reset</button>
 </template>
