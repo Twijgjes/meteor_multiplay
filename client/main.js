@@ -4,7 +4,7 @@ Meteor.startup(function() {
 
 
 	clientUpdateLoop(); // kick-off update loop on the client
-})
+});
 
 // gobal var
 move = { x:0, y:0 };

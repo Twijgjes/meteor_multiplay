@@ -3,8 +3,7 @@
 </head>
 
 <body>
-
-  
+  <!-- get the map template -->
   {{> map}}
 </body>
 
@@ -17,15 +16,20 @@
 		<h1>Create map</h1>
 		{{> loginButtons }}
 	</div>
-  	<div class="map">
-		{{#each rows}} 
-			<div class="row">
-				{{#each row}}
-					<div class="tile {{tile}}
-					{{#if playerIsHere index ../index}}player{{/if}}" data-x="{{index}}"  data-y="{{../index}}">
-					</div>
-				{{/each}}
-			</div>
-		{{/each}}
+  <div class="map">
+	{{#each rows}}
+		<div class="row">
+			{{#each row}}
+				<div class="tile {{tile}}
+				{{#if playerIsHere index ../index}}player{{/if}}" data-x="{{index}}"  data-y="{{../index}}">
+				</div>
+			{{/each}}
+		</div>
+	{{/each}}
 	</div>
+  <div class="map">
+    {{#each tiles}}
+      <div class="tile-abs {{type}}" data-i="{{index}}" style="top: {{pos.x}}px; left: {{pos.y}}px"></div>
+    {{/each}}
+  </div>
 </template>

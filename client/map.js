@@ -12,6 +12,21 @@ Template.map.helpers({
 		});
 	},
 
+  tiles : function() {
+    var map = Map.findOne('42');
+    if (!map) return []; // data not available on client yet
+    return map.tiles.map( function(tile){
+      return {
+        pos: {
+          x: tile.pos.x * 50,
+          y: tile.pos.y * 50
+        },
+        index: tile.index,
+        type: tile.type? tile.type : 'floor'
+      }
+    });
+  },
+
 	playerIsHere : function(x,y) {
 		var user = Meteor.user();
 		if (!user || !user.profile.position) return; // not logged in, or data not available on client yet
@@ -45,6 +60,25 @@ Template.map.events({
 			}
 		});
 	},
+
+  'click .tile-abs' : function(e) {
+    var index = e.currentTarget.getAttribute('data-i');
+
+    var map = Map.findOne('42');
+    var oldValue = map.tiles[index].type;
+
+    if (oldValue == 'wall')
+      var newValue = 'floor';
+    else
+      var newValue = 'wall';
+
+    map.tiles[index].type = newValue;
+    Map.update('42', {
+      $set : {
+        tiles : map.tiles
+      }
+    });
+  },
 
 	'click [data-action=reset]' : function() {
 		Meteor.users.update(Meteor.user()._id, {
@@ -96,4 +130,20 @@ Template.map.rendered =
       if (e.which == 39)
         move.x = 0;
 	});
-  };
+};
+
+//var tiles = [];
+//for(var y = 0; y < 16; y++ ){
+//  for(var x = 0; x < 16; x++ ) {
+//    tiles.push({
+//      pos: {
+//        x: x,
+//        y: y
+//      },
+//      index: x + (y * 16)
+//    });
+//  }
+//}
+//Map.update('42', {
+//  $set : { tiles : tiles }
+//});
